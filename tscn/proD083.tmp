@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://7jkpm8phj53"]
+
+[ext_resource type="Script" path="res://Procedural Generation System/world_gen_controller.gd" id="1_y6bio"]
+[ext_resource type="Texture2D" uid="uid://ynd276hsd6yu" path="res://Tiles.png" id="2_5wabj"]
+[ext_resource type="Script" path="res://Procedural Generation System/world_settings.gd" id="2_cxxxi"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="3_f58q7"]
+[ext_resource type="PackedScene" uid="uid://c2rjmvgr7dred" path="res://tscn/rigid_room.tscn" id="4_xpmvj"]
+
+[sub_resource type="Resource" id="Resource_ifq2w"]
+script = ExtResource("2_cxxxi")
+room_count = 100
+max_room_size = 10
+min_room_size = 5
+spawn_radius = 64
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mdbkr"]
+texture = ExtResource("2_5wabj")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wlurq"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_mdbkr")
+
+[node name="Procedural_World" type="Node2D"]
+script = ExtResource("1_y6bio")
+settings = SubResource("Resource_ifq2w")
+
+[node name="TileMap" type="TileMap" parent="."]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_wlurq")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 1, 2, 0, 1, -65536, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="TileMap"]
+position = Vector2(195, 214)
+position_smoothing_enabled = true
+script = ExtResource("3_f58q7")
+
+[node name="RigidBody2D" parent="." instance=ExtResource("4_xpmvj")]
