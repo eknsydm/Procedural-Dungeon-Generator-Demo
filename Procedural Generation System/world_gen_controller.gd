@@ -32,6 +32,7 @@ class command_clear extends command:
 	func undo():
 		for r in rigidRooms:
 			parent_node.add_child(r)
+
 class command_MakeCorridors extends command:
 	var vertices : Array[Delaunay2D.Vertex]
 	var tilemap: TileMap

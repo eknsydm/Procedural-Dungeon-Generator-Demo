@@ -2,3 +2,6 @@ res://procedural_world.tscn
 res://MST System/Delaunay2D.gd
 res://Procedural Generation System/tilemap_generator.gd
 res://Procedural Generation System/world_gen_controller.gd
+res://tscn/rigid_room.tscn
+res://tscn/test_field.tscn
+res://tscn/character.tscn
